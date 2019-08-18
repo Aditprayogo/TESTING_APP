@@ -7,6 +7,10 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var question = [
+      'what is your favorite food ?',
+      'what is your favorite animal ?'
+    ];
     // TODO: implement build
     return MaterialApp(
       // scaffold untuk design base template
@@ -17,14 +21,28 @@ class MyApp extends StatelessWidget {
               child: Text('MIDAS_IN'),
             ),
             leading: Icon(Icons.card_giftcard),
-
-            // warna orange
-            backgroundColor: Color(0xFFFF9000),
+            backgroundColor: Colors.orangeAccent,
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.search),
+              )
+            ],
           ),
+          // BOdy center
           body: Center(
-            child: Text(
-              'THis is my first app',
-              textAlign: TextAlign.center,
+            child: Column(
+              children: [
+                Text('THe question'),
+                RaisedButton(
+                  child: Text('Answer 1'),
+                ),
+                RaisedButton(
+                  child: Text('Answer 1'),
+                ),
+                RaisedButton(
+                  child: Text('Answer 1'),
+                )
+              ],
             ),
           )),
     );
