@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -48,7 +50,7 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(questions.elementAt(_questionIndex)),
+                Question(questions.elementAt(_questionIndex)),
                 RaisedButton(
                     // Pointer answerquestion
                     color: Colors.blueGrey,
