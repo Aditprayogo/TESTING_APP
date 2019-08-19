@@ -4,12 +4,28 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
+
+  void _answerQuestion() {
+    // mengganti text
+    setState(() {
+      _questionIndex++;
+    });
+    print(_questionIndex);
+  }
+
   @override
   Widget build(BuildContext context) {
-    var question = [
+    var questions = [
       'what is your favorite food ?',
-      'what is your favorite animal ?'
+      'what is your favorite animal ?',
+      'what is your favorite movie ?',
     ];
     // TODO: implement build
     return MaterialApp(
@@ -20,29 +36,37 @@ class MyApp extends StatelessWidget {
             title: Center(
               child: Text('MIDAS_IN'),
             ),
-            leading: Icon(Icons.card_giftcard),
+            leading: Icon(Icons.casino),
             backgroundColor: Colors.orangeAccent,
             actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.search),
-              )
+              IconButton(icon: Icon(Icons.search), onPressed: null)
             ],
           ),
           // BOdy center
           body: Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('THe question'),
+                Text(questions.elementAt(_questionIndex)),
                 RaisedButton(
-                  child: Text('Answer 1'),
-                ),
+                    // Pointer answerquestion
+                    color: Colors.blueGrey,
+                    textColor: Colors.white,
+                    child: Text('Answer 1'),
+                    onPressed: _answerQuestion),
                 RaisedButton(
-                  child: Text('Answer 1'),
-                ),
+                    color: Colors.deepOrange,
+                    textColor: Colors.white,
+                    child: Text('Answer 1'),
+                    onPressed: () => print('Answer 2 choosen')),
                 RaisedButton(
-                  child: Text('Answer 1'),
-                )
+                    color: Colors.deepPurple,
+                    textColor: Colors.white,
+                    child: Text('Answer 1'),
+                    onPressed: () => print("Answer 3 choosen")),
               ],
+              // end children
             ),
           )),
     );
