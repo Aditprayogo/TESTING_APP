@@ -15,9 +15,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var _totalScore = 0;
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
     // mengganti text
+
+    _totalScore = _totalScore + score;
+
     setState(() {
       _questionIndex++;
     });
@@ -29,19 +33,32 @@ class _MyAppState extends State<MyApp> {
       // Mapping
       {
         'questionsText': 'what is your favorite food ?',
-        'answer': ['Kolak', 'Mie', 'Nasi uduk'],
+        'answer': [
+          {'text': 'Kolak', 'score': 100},
+          {'text': 'Mie', 'score': 10},
+          {'text': 'Nasi uduk', 'score': 10},
+        ],
       },
       {
         'questionsText': 'what is your favorite animal ?',
-        'answer': ['cat', 'dog', 'snake'],
+        'answer': [
+          {'text': 'cat', 'score': 10},
+          {'text': 'dog', 'score': 10},
+          {'text': 'snake', 'score': 10}
+        ],
       },
       {
         'questionsText': 'what is your favorite movie ?',
-        'answer': ['interstellar'],
+        'answer': [
+          {'text': 'interstellar', 'score': 100}
+        ],
       },
       {
         'questionsText': 'what is your underwear color?',
-        'answer': ['Black', 'Red'],
+        'answer': [
+          {'text': 'Black', 'score': 9},
+          {'text': 'Red', 'score': 10}
+        ],
       },
     ];
     // TODO: implement build
@@ -70,7 +87,7 @@ class _MyAppState extends State<MyApp> {
                 )
 
               // else
-              : Result()),
+              : Result(_totalScore)),
     );
   }
 }
