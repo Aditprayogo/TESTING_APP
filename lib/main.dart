@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './question.dart';
-import './answer.dart';
+import './quiz.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +23,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
+    final _questions = const [
       // Mapping
       {
         'questionsText': 'what is your favorite food ?',
@@ -60,25 +59,15 @@ class _MyAppState extends State<MyApp> {
             ],
           ),
           // Body center
-          body: Column(
-            // column property
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            // childern
-            children: [
-              Question(
-                questions[_questionIndex]['questionsText'],
-              ),
-              // Spread Function
-              // memberi tahu bahwa answer ada List dari array
-              // add them to surrounding list as individual values
-              //add values to a list not a list to a list
-              ...(questions[_questionIndex]['answer'] as List<String>)
-                  .map((answer) => Answer(_answerQuestion, answer))
-                  .toList()
-            ],
-            // end childern
-          )),
+          body: _questionIndex < _questions.length
+              ? Quiz(
+                  answerQuestion: _answerQuestion,
+                  questionIndex: _questionIndex,
+                  questions: _questions,
+                )
+              : Center(
+                  child: Text('You did it !'),
+                )),
     );
   }
 }
