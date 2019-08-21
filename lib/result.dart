@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
   final int resultScore;
+  final Function resetQuiz;
 
-  Result(this.resultScore);
+  Result(this.resultScore, this.resetQuiz);
 
   // normal property in dart
   String get resultPhase {
@@ -44,6 +45,14 @@ class Result extends StatelessWidget {
           Text(
             '$resultScore',
             style: TextStyle(color: Colors.blueGrey, fontSize: 22),
+          ),
+          FlatButton(
+            color: Colors.blueGrey,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            child: Text('Restart Quiz'),
+            onPressed: resetQuiz,
           )
         ],
       ),

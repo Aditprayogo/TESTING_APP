@@ -17,6 +17,13 @@ class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
   var _totalScore = 0;
 
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   void _answerQuestion(int score) {
     // mengganti text
 
@@ -66,28 +73,29 @@ class _MyAppState extends State<MyApp> {
       // scaffold untuk design base template
       //design coloring UI
       home: Scaffold(
-          // Design bar
-          appBar: AppBar(
-            title: Center(
-              child: Text('MIDAS_IN'),
-            ),
-            leading: Icon(Icons.home),
-            backgroundColor: Colors.orangeAccent,
-            actions: <Widget>[
-              IconButton(icon: Icon(Icons.search), onPressed: null)
-            ],
+        // Design bar
+        appBar: AppBar(
+          title: Center(
+            child: Text('MIDAS_IN'),
           ),
-          // Body center
-          body: _questionIndex < _questions.length
-              // if
-              ? Quiz(
-                  answerQuestion: _answerQuestion,
-                  questionIndex: _questionIndex,
-                  questions: _questions,
-                )
+          leading: Icon(Icons.home),
+          backgroundColor: Colors.orangeAccent,
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.search), onPressed: null)
+          ],
+        ),
+        // Body center
+        body: _questionIndex < _questions.length
+            // if
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                questionIndex: _questionIndex,
+                questions: _questions,
+              )
 
-              // else
-              : Result(_totalScore)),
+            // else
+            : Result(_totalScore, _resetQuiz),
+      ),
     );
   }
 }
