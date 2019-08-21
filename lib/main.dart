@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:midas_in/result.dart';
 
 import './quiz.dart';
+import './result.dart';
 
 void main() {
   runApp(MyApp());
@@ -60,14 +62,15 @@ class _MyAppState extends State<MyApp> {
           ),
           // Body center
           body: _questionIndex < _questions.length
+              // if
               ? Quiz(
                   answerQuestion: _answerQuestion,
                   questionIndex: _questionIndex,
                   questions: _questions,
                 )
-              : Center(
-                  child: Text('You did it !'),
-                )),
+
+              // else
+              : Result()),
     );
   }
 }
